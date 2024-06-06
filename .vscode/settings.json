@@ -1,5 +1,5 @@
 {
   "window.zoomLevel": 2,
   "editor.tabSize": 2,
-  "liveServer.settings.CustomBrowser": "chrome"
+  "liveServer.settings.CustomBrowser": "microsoft-edge"
 }
