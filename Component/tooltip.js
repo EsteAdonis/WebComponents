@@ -21,8 +21,8 @@ class Tooltip extends HTMLElement {
 
         :host-context(p) {
           font-weight: bold;
-        
         }
+          
         .highlight {
           background-color: red;
         }
