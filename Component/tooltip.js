@@ -19,6 +19,10 @@ class Tooltip extends HTMLElement {
           box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.26);
         }
 
+        :host-context(p) {
+          font-weight: bold;
+        
+        }
         .highlight {
           background-color: red;
         }
