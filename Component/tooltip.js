@@ -20,9 +20,21 @@ class Tooltip extends HTMLElement {
         ::slotted(.highlight) {
           border-bottom: 1px dotted red;
         }
+
+        .icon {
+          background-color: gray;
+          color: white;
+          padding: 0.25rem 0.5rem;
+          text-align: center;
+          border-radius: 50%
+        }
+
+        :host {
+          background-color: gray;
+        }
       </style>
       <slot>Some Default</slot>
-      <span> (????)</span>`;
+      <span class="icon"> (????)</span>`;
   }
 
   connectedCallback() { 
