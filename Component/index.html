@@ -8,6 +8,10 @@
     div {
       border: 2px solid orange;
     }
+
+    .highlight {
+      background-color: orange;
+    }
   </style>
 
   <script src="tooltip.js"></script>
@@ -19,7 +23,9 @@
 
 
   <p>
-    <uc-tooltip text="Web Components is a set of standards">Web Component</uc-tooltip> are awesome!
+    <uc-tooltip text="Web Components is a set of standards">
+      <span class="highlight">Web Component</span>
+    </uc-tooltip> are awesome!
   </p>
   <uc-tooltip>Here we go!</uc-tooltip>
   
