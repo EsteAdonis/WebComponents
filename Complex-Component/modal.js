@@ -2,6 +2,7 @@ class Modal extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: 'open' });
+    this.isOpen = false;
     this.shadowRoot.innerHTML = `
       <style>
         #backdrop {
@@ -71,18 +72,56 @@ class Modal extends HTMLElement {
           <slot></slot>
         </section>
         <section id="actions">
-          <button>Cancel</button>
-          <button>Ok</button>
+          <button id="cancel-btn">Cancel</button>
+          <button id="confirm-btn">Ok</button>
         </section>
       </div>
     `;
 
-    const slots = this.shadowRoot.querySelectorAll('slot');
-    slots[1].addEventListener('slotchange', event => {
-      console.dir(slots[1].assignedNodes());
-    })
+    // const slots = this.shadowRoot.querySelectorAll('slot');
+    // slots[1].addEventListener('slotchange', event => {
+    //   console.dir(slots[1].assignedNodes());
+    // });
+
+    const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
+    const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
+
+    cancelButton.addEventListener('click', this._cancel.bind(this));
+    confirmButton.addEventListener('click', this._confirm.bind(this));    
   }
 
+  attributeChangedCallback(name, oldValue, newValue) {
+    if (this.hasAttribute('opened')) {
+      this.isOpen = true;
+    } else { 
+      this.isOpen = false;
+    }
+  }
+
+  static get observedAttributes() {
+    return  ['opened'];
+  }
+
+  open() {
+    this.setAttribute('opened', '');
+    this.isOpen = true;
+  }
+
+  hide() {
+    if (this.hasAttribute('opened')) {
+      this.removeAttribute('opened');
+    }
+    this.isOpen = false;
+  }
+
+  _cancel() {
+    this.hide();
+  }
+
+  _confirm() {
+    this.hide()
+  }
 }
 
 customElements.define('uc-modal', Modal)
+
