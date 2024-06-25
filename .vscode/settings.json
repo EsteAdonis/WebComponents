@@ -1,7 +1,7 @@
 {
   "window.zoomLevel": 2.5,
   "editor.tabSize": 2,
-  "editor.fontSize": 16,
+  "editor.fontSize": 17,
   "liveServer.settings.CustomBrowser": "microsoft-edge",
   "terminal.integrated.mouseWheelZoom": true,
   "terminal.integrated.mouseWheelScrollSensitivity": 1,
