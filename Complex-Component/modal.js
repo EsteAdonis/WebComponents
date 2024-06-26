@@ -23,9 +23,13 @@ class Modal extends HTMLElement {
           pointer-events: all;
         }
 
+        :host([opened]) #modal {
+          top: 20vh;
+        }
+
         #modal {
           position: fixed;
-          top: 15vh;
+          top: 5vh;
           left: 25%;
           width: 50%;
           // height: 30rem;
@@ -37,11 +41,13 @@ class Modal extends HTMLElement {
           flex-direction: column;
           justify-content: space-between;
           opacity: 0;
-          pointer-events: none;    
+          pointer-events: none;
+          transition: all 0.3s ease-out;
         }
 
         header{
           padding: 1rem;
+          border-bottom: 1px solid #ccc;
         }
         
         header h1 {
@@ -50,6 +56,11 @@ class Modal extends HTMLElement {
 
         #main {
           padding: 1rem;
+        }
+
+        ::slotted(h1) {
+          font-size: 1.25rem;
+          margin: 0;
         }
 
         #actions {
@@ -63,7 +74,7 @@ class Modal extends HTMLElement {
           margin: 0 0.25rem;
         }
       </style>
-      <div class="backdrop"></div>
+      <div id="backdrop"></div>
       <div id="modal">
         <header>
           <h1>Please Confirm</h1>
@@ -83,9 +94,12 @@ class Modal extends HTMLElement {
     //   console.dir(slots[1].assignedNodes());
     // });
 
+    const backDrop = this.shadowRoot.querySelector('#backdrop');
     const cancelButton = this.shadowRoot.querySelector('#cancel-btn');
     const confirmButton = this.shadowRoot.querySelector('#confirm-btn');
 
+
+    backDrop.addEventListener('click', this._cancel.bind(this));
     cancelButton.addEventListener('click', this._cancel.bind(this));
     confirmButton.addEventListener('click', this._confirm.bind(this));    
   }
